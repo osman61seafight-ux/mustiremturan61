@@ -54,6 +54,43 @@
     .backrow{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.back{padding:8px 10px;color:#f7cbdb;border:0;background:transparent;font-size:.88rem}.back:disabled{visibility:hidden}.restart{color:#cca0be;font-size:.8rem;padding:8px 10px;border:0;background:transparent}
     .decor{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}.spark{position:absolute;opacity:.25;animation:floaty var(--speed) linear infinite;font-size:var(--size)}@keyframes floaty{from{transform:translateY(110vh) rotate(0deg)}to{transform:translateY(-14vh) rotate(44deg)}}
     .finale{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(25,6,32,.86);backdrop-filter:blur(13px);text-align:center}.finale.visible{display:flex}.finale-inner{position:relative;z-index:2;width:min(100%,520px);padding:26px 15px}.finale h2{font-family:Georgia,serif;font-style:italic;font-size:clamp(2.5rem,11vw,4.5rem);line-height:1.11;color:#ffe4ef;margin:14px 0}.finale p{line-height:1.6;font-size:1.16rem;color:#ffdae9}.finale .kiss{font-size:3rem;display:block;animation:bob 2.2s ease-in-out infinite}.finale .btn{margin-top:18px}.finale .second{background:transparent;border:1px solid #ffcbd88c;color:#fff1f5;box-shadow:none;min-height:55px;font-size:1rem;margin-top:10px}.finale .small{color:#ecc9d9;font-size:.87rem;min-height:25px}#fireworks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+    /* 2026: İremsu'ya özel kalp yağmurlu, açılır aşk mektubu */
+    .finale{padding:12px;background:rgba(26,7,33,.92);overflow:hidden}
+    .finale-inner{width:min(100%,520px);max-height:calc(100dvh - 32px);overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:28px 15px max(25px, env(safe-area-inset-bottom));scrollbar-width:thin;scrollbar-color:#ffacd0 transparent}
+    .finale-intro{color:#ffd3e7;letter-spacing:.22em;font-weight:800;font-size:.75rem;text-transform:uppercase}
+    .envelope-step,.letter-step{animation:letterIn .72s cubic-bezier(.22,1,.36,1) both}
+    .envelope-step[hidden],.letter-step[hidden],.song-iframe-wrap[hidden]{display:none!important}
+    @keyframes letterIn{from{opacity:0;transform:translateY(22px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .envelope-open{width:100%;max-width:290px;min-height:202px;margin:28px auto 13px;border:0;background:none;display:grid;place-items:center;cursor:pointer;position:relative}
+    .envelope-shape{position:relative;display:block;width:235px;height:156px;border-radius:12px;background:linear-gradient(135deg,#ffdce8,#ffb4d3);box-shadow:0 20px 46px #03000785,0 0 54px #ff9fd278;transform:rotate(-4deg);transition:transform .35s ease}
+    .envelope-open:hover .envelope-shape,.envelope-open:focus-visible .envelope-shape{transform:rotate(0deg) scale(1.04)}
+    .envelope-shape:before{content:'';position:absolute;inset:0;background:linear-gradient(145deg,#ffeff3,#ffaccd);clip-path:polygon(0 0,100% 0,50% 64%);border-radius:12px;filter:drop-shadow(0 4px 2px #a44c7033)}
+    .envelope-shape:after{content:'';position:absolute;inset:0;background:linear-gradient(145deg,#ffb9ce,#ffd9e3);clip-path:polygon(0 100%,50% 40%,100% 100%);border-radius:12px}
+    .envelope-seal{position:absolute;z-index:2;inset:50% auto auto 50%;transform:translate(-50%,-12%);font-size:2.25rem;filter:drop-shadow(0 3px 9px #ff5687ba);animation:heartbeat 1.5s ease-in-out infinite}
+    @keyframes heartbeat{0%,100%{transform:translate(-50%,-12%) scale(1)}45%{transform:translate(-50%,-12%) scale(1.11)}}
+    .envelope-hint{font-size:1rem;color:#ffe3ef;margin:10px auto 22px;line-height:1.55}
+    .heart-rain{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+    .heart-drop{position:absolute;top:-14vh;left:var(--left);font-size:var(--size);opacity:0;filter:drop-shadow(0 0 9px #ff93bd55);animation:heartFall var(--dur) linear var(--delay) infinite;will-change:transform}
+    @keyframes heartFall{0%{transform:translate3d(0,-8vh,0) rotate(-18deg);opacity:0}10%{opacity:.62}75%{opacity:.68}100%{transform:translate3d(var(--drift),116vh,0) rotate(35deg);opacity:0}}
+    .letter-paper{position:relative;background:linear-gradient(155deg,#fff8ed 0%,#ffeff4 55%,#ffe0ed 100%);border:1px solid #fff4dd;border-radius:23px;padding:30px 22px 25px;box-shadow:0 18px 54px #160a23a8,0 0 0 6px #ffffff0d;color:#65364f;transform:rotate(-.8deg);margin:18px 5px 17px;text-align:left;overflow:hidden}
+    .letter-paper:before{content:'♡';position:absolute;right:-14px;top:-19px;color:#e5a1b8;opacity:.22;font-size:8rem;line-height:1}
+    .letter-to{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.6rem;color:#8c4766;margin-bottom:13px}
+    .letter-text{font-family:Georgia,'Times New Roman',serif;font-size:clamp(1.26rem,5.1vw,1.65rem);font-style:italic;line-height:1.7;font-weight:600;letter-spacing:-.01em;color:#71384f;position:relative;white-space:normal;overflow-wrap:anywhere}
+    .letter-after{font-size:.98rem;line-height:1.65;color:#925973;margin-top:18px;position:relative}
+    .letter-sign{font-family:Georgia,serif;font-style:italic;font-size:1.25rem;color:#a34f75;text-align:right;margin-top:22px}
+    .letter-snapshot{width:95px;height:104px;object-fit:cover;border:4px solid white;border-radius:10px;transform:rotate(6deg);float:right;margin:0 0 15px 16px;box-shadow:0 8px 17px #b46f9161}
+    .music-box{background:#ffffff16;border:1px solid #ffdaec5c;border-radius:18px;padding:14px 15px 16px;margin:12px 0 12px}
+    .music-label{font-size:.81rem;color:#ffe5b5;letter-spacing:.09em;font-weight:800;margin-bottom:5px}
+    .music-title{font-size:1rem;color:#ffeaf3;line-height:1.4;margin-bottom:9px}
+    .song-iframe-wrap{width:100%;border-radius:13px;overflow:hidden;background:#100a19;aspect-ratio:16/9;margin:13px 0 8px}
+    .song-iframe-wrap iframe{display:block;width:100%;height:100%;border:0}
+    .finale .btn{min-height:56px;font-size:1.02rem;border-radius:17px;margin-top:12px}
+    .finale .second{background:#ffffff0a}
+    .finale .small{font-size:.85rem;line-height:1.5;color:#f9cada}
+    .letter-step .kiss{font-size:2rem;line-height:1.15}
+    @media(max-width:380px){.letter-paper{padding:25px 19px}.letter-snapshot{width:75px;height:90px}.finale-inner{padding:20px 8px}.finale h2{font-size:2.25rem}}
+    @media(prefers-reduced-motion:reduce){.heart-drop{animation:none;display:none}.envelope-seal{animation:none}}
     @media(max-width:380px){.memory-frame{aspect-ratio:1/1.08}.memory{margin-top:16px}.memory-caption{margin:15px auto 9px}}
     @media(min-width:720px){.app{padding-top:32px}.content{min-height:740px}.panel{border-radius:48px}.topbar{margin-bottom:27px}}
     @media(max-width:380px){.app{padding-inline:12px}.content{padding:32px 23px 26px}.brand{font-size:.75rem}.chip{font-size:.71rem;padding:9px}.headline{font-size:2.55rem}.emoji{margin:26px 0 15px}.description{font-size:1.04rem}.btn{min-height:66px}.choice{min-height:68px}}
@@ -67,20 +104,45 @@
     <div class="progress" id="progress" aria-label="8 aşamalı sürpriz ilerlemesi"></div>
     <section class="panel" aria-live="polite" id="panel"><div class="content" id="content"></div></section>
     <div class="backrow"><button class="back" id="backBtn" type="button">← Önceki aşama</button><button class="restart" id="restartBtn" type="button">↻ Baştan başla</button></div>
-    <footer class="footnote">Biraz kahkaha, biraz aşk, <b>bolca biz.</b> ✨</footer>
+    <footer class="footnote">Biraz kahkaha, biraz aşk, biraz da <b>kalbimizin en güzel hikâyesi:</b> biz. ✨</footer>
   </main>
-  <div class="finale" id="finale" role="dialog" aria-modal="true" aria-label="İremsu'ya özel final sürprizi">
+  <div class="finale" id="finale" role="dialog" aria-modal="true" aria-label="İremsu'ya aşk mektubu">
     <canvas id="fireworks" aria-hidden="true"></canvas>
+    <div class="heart-rain" id="heartRain" aria-hidden="true"></div>
     <div class="finale-inner">
-      <span class="kiss">💗</span>
-      <h2>İyi ki benimlesin,<br>İremsu'm.</h2>
-      <p>Sen benim en güzel tesadüfüm,<br>en sevdiğim hikâyemsin.<br><strong>Seni çok seviyorum! ❤️</strong></p>
-      <button type="button" class="btn" id="songBtn">🎵 Şarkımızı çal</button>
-      <p class="small" id="songStatus">Final şarkımızı birlikte ekleyeceğiz ✨</p>
-      <button type="button" class="btn second" id="closeFinale">Sürprize geri dön ♡</button>
+      <div id="envelopeStep" class="envelope-step">
+        <div class="finale-intro">✦ sadece sana özel ✦</div>
+        <h2>İremsu'm,<br>bu mektup sana... 💗</h2>
+        <p>Kalbimde sakladığım birkaç kelime var.<br>Hepsi senin için.</p>
+        <button class="envelope-open" id="openLetterBtn" type="button" aria-label="Aşk mektubunu aç">
+          <span class="envelope-shape"><span class="envelope-seal">💗</span></span>
+        </button>
+        <p class="envelope-hint">Mektubunu okumak için kalbe dokun 💌</p>
+        <button type="button" class="btn second" id="closeEnvelope">Sürprize geri dön ♡</button>
+      </div>
+      <div id="letterStep" class="letter-step" hidden>
+        <span class="kiss" aria-hidden="true">💞</span>
+        <div class="finale-intro">kalbimden sana</div>
+        <div class="letter-paper" aria-label="Musti'den İremsu'ya aşk mektubu">
+          <img src="assets/biz-3.webp" class="letter-snapshot" alt="İremsu ve Musti birlikte" loading="lazy">
+          <div class="letter-to">İremsu'm,</div>
+          <div class="letter-text">Sana asigim evim seni çok özledim,alim seni???</div>
+          <div class="letter-after">Her sarılışımızı, birlikte güldüğümüz her anı saklıyorum. Seninle hayat, en sevdiğim hikâyeye dönüşüyor. İyi ki sen, iyi ki biz. ❤️</div>
+          <div class="letter-sign">Daima senin Musti'n ♡</div>
+        </div>
+        <div class="music-box">
+          <div class="music-label">♫ BİZİM ŞARKIMIZ</div>
+          <div class="music-title">INNA — Caliente 💗</div>
+          <button class="btn" id="songBtn" type="button">🎵 Caliente'yi dinle</button>
+          <p class="small" id="songStatus">Şarkı başlamazsa aşağıdaki oynat düğmesine dokun 💕</p>
+          <div class="song-iframe-wrap" id="songPlayer" hidden></div>
+          <a id="musicExternal" href="https://www.youtube.com/watch?v=Rpc8pTvNHwA" target="_blank" rel="noopener noreferrer" style="font-size:.83rem;color:#ffcee6;display:inline-block;margin-top:7px">Şarkıyı YouTube'da aç ↗</a>
+        </div>
+        <button type="button" class="btn second" id="closeFinale">Bir daha sarılayım sana ♡</button>
+      </div>
     </div>
   </div>
-  <audio id="song" preload="none" src="assets/sarkimiz.mp3"></audio>
+  <audio id="song" preload="none" data-mode="youtube" src="assets/sarkimiz.mp3"></audio>
   <script>
   (() => {
     'use strict';
@@ -91,16 +153,16 @@
     const albumIndex={5:0,6:0};
     const albums={
       5:[
-        {src:'assets/photo-1.webp',alt:'İremsu, kafenin masasında iki minik ördek figürüyle',caption:'İki minik ördek, bir kocaman gülümseme… Böyle baktığında dünya güzelleşiyor. 🐥💗'},
-        {src:'assets/photo-2.webp',alt:'İremsu, pencere önündeki koltukta gülümsüyor',caption:'Bu fotoğrafa her baktığımda yine aynı şeyi düşünüyorum: Çok güzelsin. 🤍'},
-        {src:'assets/photo-3.webp',alt:'İremsu, pencere kenarındaki koltukta oturuyor',caption:'Bazen sadece bir fotoğrafına bakıp gülümsüyorum. Bunun sebebi sensin. 🥹❤️'}
+        {src:'assets/irem-1.webp',alt:'İremsu, kafenin masasında iki minik ördek figürüyle',caption:'İki minik ördek, bir kocaman gülümseme… Böyle baktığında dünya güzelleşiyor. 🐥💗'},
+        {src:'assets/irem-2.webp',alt:'İremsu, pencere önündeki koltukta gülümsüyor',caption:'Bu fotoğrafa her baktığımda yine aynı şeyi düşünüyorum: Çok güzelsin. 🤍'},
+        {src:'assets/irem-3.webp',alt:'İremsu, pencere kenarındaki koltukta oturuyor',caption:'Bazen sadece bir fotoğrafına bakıp gülümsüyorum. Bunun sebebi sensin. 🥹❤️'}
       ],
       6:[
-        {src:'assets/photo-4.webp',alt:'Musti ve İremsu kafede birlikte selfie çekiyor',caption:'Bir kahve, biraz tatlı ve sen… En güzel anıların tarifi bu olabilir. ☕🍰'},
-        {src:'assets/photo-5.webp',alt:'İremsu ile birlikte dışarıda çekilen bir anı fotoğrafı',caption:'Sıradan bir akşamın bile seninle ne kadar özel olabildiğinin kanıtı. ✨'},
-        {src:'assets/photo-6.webp',alt:'Musti ve İremsu birlikte bir davette',caption:'Yan yana olduğumuz her kare, biriktirmek istediğim yeni bir hatıra. 💞'},
-        {src:'assets/photo-7.webp',alt:'Musti ve İremsu şakalaşırken yakın çekim fotoğraf',caption:'Biraz ciddi, biraz şımarık… İşte tam da bizim hâlimiz! 😄💋'},
-        {src:'assets/photo-8.webp',alt:'Musti ve İremsu tuğla duvar önünde birlikte selfie çekiyor',caption:'Daha fotoğrafa bakarken bile yüzümde bir gülümseme… İyi ki biz. 🌿❤️'}
+        {src:'assets/biz-1.webp',alt:'Musti ve İremsu kafede birlikte selfie çekiyor',caption:'Bir kahve, biraz tatlı ve sen… En güzel anıların tarifi bu olabilir. ☕🍰'},
+        {src:'assets/biz-2.webp',alt:'İremsu ile birlikte dışarıda çekilen bir anı fotoğrafı',caption:'Sıradan bir akşamın bile seninle ne kadar özel olabildiğinin kanıtı. ✨'},
+        {src:'assets/biz-3.webp',alt:'Musti ve İremsu birlikte bir davette',caption:'Yan yana olduğumuz her kare, biriktirmek istediğim yeni bir hatıra. 💞'},
+        {src:'assets/biz-4.webp',alt:'Musti ve İremsu şakalaşırken yakın çekim fotoğraf',caption:'Biraz ciddi, biraz şımarık… İşte tam da bizim hâlimiz! 😄💋'},
+        {src:'assets/biz-5.webp',alt:'Musti ve İremsu tuğla duvar önünde birlikte selfie çekiyor',caption:'Daha fotoğrafa bakarken bile yüzümde bir gülümseme… İyi ki biz. 🌿❤️'}
       ]
     };
     const titles=[
@@ -128,8 +190,8 @@
           if(!substage)markup=screen('💋','Şimdi seçim zamanı!','<p>Şu an yanında olsaydım önce hangisini isterdin?</p>','',`<div class="choices"><button class="choice" data-answer="1">Sıcacık, uzun bir sarılma 🫂</button><button class="choice" data-answer="2">Kocaman bir öpücük 💋</button><button class="choice" data-answer="3">İkisi de, soru mu bu? ❤️</button></div>`);
           else markup=screen('🥹','Hemen geliyorum!','<p>'+chosen+'</p>',button('next','Bir anımıza bakalım 📸'));break;
         case 5:markup=screen('📸','En sevdiğim karelerden…','<p>Senin her fotoğrafında ayrı bir güzellik var. Ama en çok da bende uyandırdığın hisleri seviyorum. 💗</p>',button('albumNext',albumIndex[5]===albums[5].length-1?'Bizim anılarımıza geç 💞':'Bir fotoğraf daha göster 📷'),memoryAlbum(5));break;
-        case 6:markup=screen('🫶','Bir de bizim hikâyemiz…','<p>En güzel fotoğraflar kusursuz çıktıklarımız değil, birlikte olduğumuzu hatırlatanlar.</p>',button('albumNext',albumIndex[6]===albums[6].length-1?'Finale hazırım ✨':'Bir anı daha göster 💕'),memoryAlbum(6));break;
-        case 7:markup=screen('💝','İyi ki benimlesin, İremsu’m.','<p>Seninle gülmek, saçmalamak ve bazen sadece yan yana olmak… Hepsi benim için çok kıymetli.</p><p><strong>İyi ki yollarımız kesişmiş. İyi ki sen.</strong></p>','',`<div class="coupons">${['🫂 Sınırsız sarılma kuponu','💋 Kocaman öpücük kuponu','🍫 Seni şımartma günü kuponu'].map((c,i)=>`<button class="coupon ${coupons[i]?'used':''}" data-coupon="${i}" type="button">${c}</button>`).join('')}</div><p class="tiny-note">Kuponları kullanmak için dokun. Hepsi sınırsız sevgiyle geçerli. ♡</p><div class="action-area">${button('finalBtn','Son sürprizi aç 🎁❤️')}</div>`);break;
+        case 6:markup=screen('🫶','Bir de bizim masalımız…','<p>En güzel fotoğraflar kusursuz çıktıklarımız değil; birlikte olduğumuz, birbirimize ait hissettiğimiz anları hatırlatanlar.</p>',button('albumNext',albumIndex[6]===albums[6].length-1?'Kalbimin son sürprizine geç ✨':'Bir anı daha göster 💕'),memoryAlbum(6));break;
+        case 7:markup=screen('💝','Kalbimin en güzel yeri sensin, İremsu’m.','<p>Seninle gülmek, saçmalamak, konuşmak ve bazen sadece yan yana durmak bile benim için tarif edilmesi zor bir mutluluk.</p><p>Sen varken her şey biraz daha sıcak, biraz daha anlamlı, biraz daha güzel geliyor.</p><p><strong>İyi ki yollarımız kesişmiş. İyi ki sen varsın. İyi ki biz olmuşuz. ❤️</strong></p>','',`<div class="coupons">${['🌙 Gece boyu sarılma kuponu','💋 Sebepsiz öpücük kuponu','✨ Sürpriz buluşma kuponu'].map((c,i)=>`<button class="coupon ${coupons[i]?'used':''}" data-coupon="${i}" type="button">${c}</button>`).join('')}</div><p class="tiny-note">Kuponları kullanmak için dokun. Hepsi sadece sana özel ve sınırsız sevgiyle geçerli. ♡</p><div class="action-area">${button('finalBtn','Kalbimde sakladığım son sürpriz 🎁❤️')}</div>`);break;
       }
       content.innerHTML=markup;
       $('panel').scrollTop=0; $('panel').scrollLeft=0;
@@ -184,14 +246,71 @@
     }
     backBtn.addEventListener('click',()=>{if(substage){substage='';render()}else if(stage>0)go(stage-1)});
     $('restartBtn').addEventListener('click',()=>{coupons.fill(false);albumIndex[5]=0;albumIndex[6]=0;go(0)});
-    function openFinale(){ $('finale').classList.add('visible');document.body.style.overflow='hidden';startFireworks();$('songBtn').focus(); }
-    $('closeFinale').addEventListener('click',()=>{$('finale').classList.remove('visible');document.body.style.overflow='';stopFireworks();});
-    $('songBtn').addEventListener('click',async()=>{
-      if(isPlaying){song.pause();isPlaying=false;$('songBtn').textContent='🎵 Şarkımızı çal';$('songStatus').textContent='Yine açmak için dokun ♡';return;}
-      try{await song.play();isPlaying=true;$('songBtn').textContent='⏸ Şarkıyı durdur';$('songStatus').textContent='Bu şarkı ikimizin… 💗';}
-      catch(e){$('songStatus').textContent='Şarkımızı eklediğimizde burada çalacak. 🎶';}
+    let finaleIsOpen=false;
+    const officialVideo='Rpc8pTvNHwA';
+    function createHeartRain(){
+      const holder=$('heartRain');
+      if(holder.children.length)return;
+      const hearts=['♥','💗','♡','💕','♥'];
+      for(let i=0;i<36;i++){
+        const el=document.createElement('span');el.className='heart-drop';el.textContent=hearts[i%hearts.length];
+        el.style.setProperty('--left',((i*37+11)%100)+'%');
+        el.style.setProperty('--size',(13+(i*11)%18)+'px');
+        el.style.setProperty('--drift',(((i*23)%130)-65)+'px');
+        el.style.setProperty('--dur',(6+(i*13)%65/10).toFixed(1)+'s');
+        el.style.setProperty('--delay',(-i*1.31).toFixed(2)+'s');
+        holder.appendChild(el);
+      }
+    }
+    function openFinale(){
+      finaleIsOpen=true;$('finale').classList.add('visible');document.body.style.overflow='hidden';
+      $('envelopeStep').hidden=false;$('letterStep').hidden=true;
+      createHeartRain();$('openLetterBtn').focus();
+    }
+    function revealLetter(){
+      $('envelopeStep').hidden=true;$('letterStep').hidden=false;
+      $('finale').querySelector('.finale-inner').scrollTop=0;
+      startFireworks();$('songBtn').focus();
+      // Safari yalnızca kullanıcı etkileşimiyle sesi başlatabilir.
+      if(song.dataset.mode==='file')startLocalSong();else showOfficialPlayer();
+    }
+    function showOfficialPlayer(){
+      const host=$('songPlayer');host.hidden=false;
+      host.innerHTML='';
+      const frame=document.createElement('iframe');
+      frame.title='INNA - Caliente, resmi müzik videosu';
+      frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.allowFullscreen=true;
+      frame.src='https://www.youtube-nocookie.com/embed/'+officialVideo+'?autoplay=1&playsinline=1&rel=0';
+      host.appendChild(frame);
+      $('songStatus').textContent='Caliente burada 💗 Otomatik başlamazsa videodaki ▶ düğmesine dokun.';
+      $('songBtn').textContent='🎵 Şarkıyı yeniden başlat';
+    }
+    async function startLocalSong(){
+      if(isPlaying){song.pause();isPlaying=false;$('songBtn').textContent='🎵 Caliente’yi çal';return;}
+      try{
+        await song.play();isPlaying=true;
+        $('songBtn').textContent='⏸ Müziği durdur';
+        $('songStatus').textContent='Bizim şarkımız başladı… 💗';
+      }catch(err){showOfficialPlayer();}
+    }
+    function closeFinale(){
+      finaleIsOpen=false;
+      $('finale').classList.remove('visible');document.body.style.overflow='';stopFireworks();
+      const host=$('songPlayer');host.innerHTML='';host.hidden=true;
+      song.pause();isPlaying=false;
+      $('songBtn').textContent='🎵 Caliente’yi dinle';
+    }
+    $('openLetterBtn').addEventListener('click',revealLetter);
+    $('closeEnvelope').addEventListener('click',closeFinale);
+    $('closeFinale').addEventListener('click',closeFinale);
+    $('songBtn').addEventListener('click',()=>{
+      if(song.dataset.mode==='file')startLocalSong();else showOfficialPlayer();
     });
-    song.addEventListener('ended',()=>{isPlaying=false;$('songBtn').textContent='🎵 Yeniden çal'});
+    song.addEventListener('ended',()=>{
+      isPlaying=false;$('songBtn').textContent='🎵 Yeniden dinle';
+      $('songStatus').textContent='Bir daha dinlemek için dokun 💗';
+    });
     // Animasyon arka planı. Dış kütüphane / sunucu gerektirmez.
     const decoration=['♥','✧','✦','♡','✿'];
     const dec=$('decor');for(let i=0;i<17;i++){
