@@ -95,6 +95,35 @@
     @media(min-width:720px){.app{padding-top:32px}.content{min-height:740px}.panel{border-radius:48px}.topbar{margin-bottom:27px}}
     @media(max-width:380px){.app{padding-inline:12px}.content{padding:32px 23px 26px}.brand{font-size:.75rem}.chip{font-size:.71rem;padding:9px}.headline{font-size:2.55rem}.emoji{margin:26px 0 15px}.description{font-size:1.04rem}.btn{min-height:66px}.choice{min-height:68px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+    .finale{overflow-y:auto;align-items:flex-start;padding:clamp(18px,4vh,32px) 16px 34px;overscroll-behavior:contain}
+    .finale-inner{margin:auto;z-index:3;padding:12px 8px 26px;width:min(100%,475px)}
+    .finale h2{font-size:clamp(2.2rem,10vw,3.4rem);line-height:1.1;margin:8px 0 18px;text-shadow:0 9px 40px #ff9ed64b}
+    .envelope-mark{font-size:3.8rem;animation:envelope-pop 1.5s ease both;filter:drop-shadow(0 6px 20px #ff7ba377)}
+    .love-kicker{color:#ffe1b7;font-size:.68rem;letter-spacing:.18em;font-weight:800;margin-top:4px}
+    .love-letter{position:relative;width:100%;padding:25px 21px 20px;border-radius:4px 19px 7px 22px;background:linear-gradient(154deg,#fff8ee,#ffe7e5 74%,#ffe9ef);color:#663d58;text-align:left;box-shadow:0 24px 60px #140318bd,0 1px 1px #ffffffaa inset;transform-origin:center top;opacity:0;transform:translateY(24px) rotate(-3deg) scale(.95);transition:opacity .75s ease,transform .85s cubic-bezier(.2,.8,.2,1);border:1px solid #fffaf0}
+    .love-letter.revealed{opacity:1;transform:translateY(0) rotate(-1.2deg) scale(1)}
+    .love-letter:after{content:'♡';position:absolute;right:10px;bottom:4px;color:#db9ca8;font-size:2.4rem;opacity:.26}
+    .letter-stamp{position:absolute;right:17px;top:13px;width:41px;height:41px;border-radius:50%;background:#e7819a;color:#fff5ef;display:grid;place-items:center;font-size:1.4rem;transform:rotate(10deg);box-shadow:0 2px 7px #ac597e65}
+    .letter-dear{font-family:Georgia,serif;font-size:1.36rem;font-style:italic;font-weight:700;color:#ad527e;margin:0 0 14px}
+    .letter-quote{font-family:Georgia,serif!important;font-size:clamp(1.5rem,6vw,2.08rem)!important;font-style:italic;font-weight:700;color:#653758!important;line-height:1.5!important;margin:16px 0 19px!important;overflow-wrap:break-word}
+    .letter-flourish{text-align:center;color:#ca6c92;letter-spacing:.2em;font-size:1.13rem}
+    .letter-sign{font-family:Georgia,serif;text-align:right;font-size:1.02rem;line-height:1.5;margin-top:11px;color:#8f4a70;font-style:italic}
+    .letter-sign strong{font-size:1.28rem}
+    .final-whisper{color:#ffdae8;line-height:1.65;font-size:.98rem;margin:20px auto 8px}
+    .finale-music-btn{min-height:58px!important;font-size:1rem!important;margin-top:10px!important}
+    .finale .small{margin:11px auto 6px;color:#e8c3d7;font-size:.82rem;line-height:1.5}
+    .finale .second{margin-top:16px}
+    .heart-rain{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+    .rain-heart{position:absolute;top:-12%;left:var(--left);color:var(--pink);font-size:var(--size);opacity:0;filter:drop-shadow(0 0 9px #ff95c499);animation:heart-fall var(--duration) linear var(--delay) infinite;will-change:transform,opacity}
+    @keyframes heart-fall{0%{transform:translate3d(0,-10vh,0) rotate(-20deg);opacity:0}10%{opacity:.75}83%{opacity:.85}100%{transform:translate3d(var(--drift),110vh,0) rotate(24deg);opacity:0}}
+    @keyframes envelope-pop{0%{transform:translateY(-26px) scale(.75);opacity:0}60%{transform:translateY(5px) scale(1.08);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+    .music-embed[hidden]{display:none}
+    .music-embed{margin:12px auto 5px;padding:9px;border-radius:15px;background:#ffffff10;border:1px solid #ffdce657}
+    .music-embed iframe{display:block;width:100%;height:210px;border:none;border-radius:10px;background:#261029}
+    .music-embed p{font-size:.75rem;color:#f8d6e4;line-height:1.4;margin:7px}
+    @media(max-width:375px){.love-letter{padding:20px 18px}.letter-quote{font-size:1.42rem!important}.music-embed iframe{height:190px}}
+    @media(prefers-reduced-motion:reduce){.rain-heart{display:none}.love-letter{transition:none;transform:none;opacity:1}}
   </style>
 </head>
 <body>
@@ -106,43 +135,31 @@
     <div class="backrow"><button class="back" id="backBtn" type="button">← Önceki aşama</button><button class="restart" id="restartBtn" type="button">↻ Baştan başla</button></div>
     <footer class="footnote">Biraz kahkaha, biraz aşk, biraz da <b>kalbimizin en güzel hikâyesi:</b> biz. ✨</footer>
   </main>
-  <div class="finale" id="finale" role="dialog" aria-modal="true" aria-label="İremsu'ya aşk mektubu">
+  <div class="finale" id="finale" role="dialog" aria-modal="true" aria-label="İremsu için aşk mektubu">
     <canvas id="fireworks" aria-hidden="true"></canvas>
     <div class="heart-rain" id="heartRain" aria-hidden="true"></div>
     <div class="finale-inner">
-      <div id="envelopeStep" class="envelope-step">
-        <div class="finale-intro">✦ sadece sana özel ✦</div>
-        <h2>İremsu'm,<br>bu mektup sana... 💗</h2>
-        <p>Kalbimde sakladığım birkaç kelime var.<br>Hepsi senin için.</p>
-        <button class="envelope-open" id="openLetterBtn" type="button" aria-label="Aşk mektubunu aç">
-          <span class="envelope-shape"><span class="envelope-seal">💗</span></span>
-        </button>
-        <p class="envelope-hint">Mektubunu okumak için kalbe dokun 💌</p>
-        <button type="button" class="btn second" id="closeEnvelope">Sürprize geri dön ♡</button>
+      <div class="envelope-mark" aria-hidden="true">💌</div>
+      <div class="love-kicker">MUSTİ'DEN İREMSU'YA • SON SÜRPRİZ</div>
+      <h2>Kalbimden sana<br>küçük bir mektup...</h2>
+      <div class="love-letter" id="loveLetter">
+        <div class="letter-stamp">♥</div>
+        <div class="letter-dear">İremsu'm,</div>
+        <p class="letter-quote">Sana asigim evim seni çok özledim,alim seni???</p>
+        <div class="letter-flourish">♥ &nbsp; ✧ &nbsp; ♥</div>
+        <div class="letter-sign">Seni çok seven,<br><strong>Musti ♡</strong></div>
       </div>
-      <div id="letterStep" class="letter-step" hidden>
-        <span class="kiss" aria-hidden="true">💞</span>
-        <div class="finale-intro">kalbimden sana</div>
-        <div class="letter-paper" aria-label="Musti'den İremsu'ya aşk mektubu">
-          <img src="assets/biz-3.webp" class="letter-snapshot" alt="İremsu ve Musti birlikte" loading="lazy">
-          <div class="letter-to">İremsu'm,</div>
-          <div class="letter-text">Sana asigim evim seni çok özledim,alim seni???</div>
-          <div class="letter-after">Her sarılışımızı, birlikte güldüğümüz her anı saklıyorum. Seninle hayat, en sevdiğim hikâyeye dönüşüyor. İyi ki sen, iyi ki biz. ❤️</div>
-          <div class="letter-sign">Daima senin Musti'n ♡</div>
-        </div>
-        <div class="music-box">
-          <div class="music-label">♫ BİZİM ŞARKIMIZ</div>
-          <div class="music-title">INNA — Caliente 💗</div>
-          <button class="btn" id="songBtn" type="button">🎵 Caliente'yi dinle</button>
-          <p class="small" id="songStatus">Şarkı başlamazsa aşağıdaki oynat düğmesine dokun 💕</p>
-          <div class="song-iframe-wrap" id="songPlayer" hidden></div>
-          <a id="musicExternal" href="https://www.youtube.com/watch?v=Rpc8pTvNHwA" target="_blank" rel="noopener noreferrer" style="font-size:.83rem;color:#ffcee6;display:inline-block;margin-top:7px">Şarkıyı YouTube'da aç ↗</a>
-        </div>
-        <button type="button" class="btn second" id="closeFinale">Bir daha sarılayım sana ♡</button>
+      <div class="final-whisper">Sen benim en güzel "iyi ki"msin.<br>İyi ki yollarımız kesişmiş, iyi ki biz olmuşuz. ❤️</div>
+      <button type="button" class="btn finale-music-btn" id="songBtn">🎵 INNA – Caliente'yi çal</button>
+      <p class="small" id="songStatus">Sürprizimizin şarkısı: INNA – Caliente ♡</p>
+      <div class="music-embed" id="musicEmbed" hidden>
+        <iframe id="musicVideo" title="INNA – Caliente resmi müzik videosu" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p>Resmî YouTube oynatıcısı: Ses başlamazsa oynat düğmesine dokun. 💗</p>
       </div>
+      <button type="button" class="btn second" id="closeFinale">Mektubu kalbime sakla ♡</button>
     </div>
   </div>
-  <audio id="song" preload="none" data-mode="youtube" src="assets/sarkimiz.mp3"></audio>
+  <audio id="song" preload="none" src="assets/caliente.mp3"></audio>
   <script>
   (() => {
     'use strict';
@@ -191,7 +208,7 @@
           else markup=screen('🥹','Hemen geliyorum!','<p>'+chosen+'</p>',button('next','Bir anımıza bakalım 📸'));break;
         case 5:markup=screen('📸','En sevdiğim karelerden…','<p>Senin her fotoğrafında ayrı bir güzellik var. Ama en çok da bende uyandırdığın hisleri seviyorum. 💗</p>',button('albumNext',albumIndex[5]===albums[5].length-1?'Bizim anılarımıza geç 💞':'Bir fotoğraf daha göster 📷'),memoryAlbum(5));break;
         case 6:markup=screen('🫶','Bir de bizim masalımız…','<p>En güzel fotoğraflar kusursuz çıktıklarımız değil; birlikte olduğumuz, birbirimize ait hissettiğimiz anları hatırlatanlar.</p>',button('albumNext',albumIndex[6]===albums[6].length-1?'Kalbimin son sürprizine geç ✨':'Bir anı daha göster 💕'),memoryAlbum(6));break;
-        case 7:markup=screen('💝','Kalbimin en güzel yeri sensin, İremsu’m.','<p>Seninle gülmek, saçmalamak, konuşmak ve bazen sadece yan yana durmak bile benim için tarif edilmesi zor bir mutluluk.</p><p>Sen varken her şey biraz daha sıcak, biraz daha anlamlı, biraz daha güzel geliyor.</p><p><strong>İyi ki yollarımız kesişmiş. İyi ki sen varsın. İyi ki biz olmuşuz. ❤️</strong></p>','',`<div class="coupons">${['🌙 Gece boyu sarılma kuponu','💋 Sebepsiz öpücük kuponu','✨ Sürpriz buluşma kuponu'].map((c,i)=>`<button class="coupon ${coupons[i]?'used':''}" data-coupon="${i}" type="button">${c}</button>`).join('')}</div><p class="tiny-note">Kuponları kullanmak için dokun. Hepsi sadece sana özel ve sınırsız sevgiyle geçerli. ♡</p><div class="action-area">${button('finalBtn','Kalbimde sakladığım son sürpriz 🎁❤️')}</div>`);break;
+        case 7:markup=screen('💝','Kalbimin en güzel yeri sensin, İremsu’m.','<p>Seninle gülmek, saçmalamak, konuşmak ve bazen sadece yan yana durmak bile benim için tarif edilmesi zor bir mutluluk.</p><p>Sen varken her şey biraz daha sıcak, biraz daha anlamlı, biraz daha güzel geliyor.</p><p><strong>İyi ki yollarımız kesişmiş. İyi ki sen varsın. İyi ki biz olmuşuz. ❤️</strong></p>','',`<div class="coupons">${['🌙 Gece boyu sarılma kuponu','💋 Sebepsiz öpücük kuponu','✨ Sürpriz buluşma kuponu'].map((c,i)=>`<button class="coupon ${coupons[i]?'used':''}" data-coupon="${i}" type="button">${c}</button>`).join('')}</div><p class="tiny-note">Kuponları kullanmak için dokun. Hepsi sadece sana özel ve sınırsız sevgiyle geçerli. ♡</p><div class="action-area">${button('finalBtn','Mektubumu aç, aşkım 💌❤️')}</div>`);break;
       }
       content.innerHTML=markup;
       $('panel').scrollTop=0; $('panel').scrollLeft=0;
@@ -262,55 +279,63 @@
         holder.appendChild(el);
       }
     }
+    const youtubeVideo='https://www.youtube-nocookie.com/embed/Rpc8pTvNHwA?autoplay=1&playsinline=1&rel=0';
+    let showVideo=false;
+    function openYouTube(){
+      if(showVideo)return;
+      showVideo=true;
+      $('musicEmbed').hidden=false;
+      $('musicVideo').src=youtubeVideo;
+      $('songBtn').textContent='🎶 INNA – Caliente';
+      $('songStatus').textContent='Şarkı resmi YouTube oynatıcısından açıldı. Gerekirse oynat düğmesine bas ♡';
+    }
+    function startHearts(){
+      const el=$('heartRain');el.replaceChildren();
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      for(let i=0;i<33;i++){
+        const h=document.createElement('span');h.className='rain-heart';
+        h.textContent=['♥','❤','♡','💗','💕'][i%5];
+        h.style.setProperty('--left',((i*37+9)%100)+'%');
+        h.style.setProperty('--size',(12+(i*7)%21)+'px');
+        h.style.setProperty('--pink',['#ff91c2','#ffc9d8','#ffd8a9','#f7a6ff'][i%4]);
+        h.style.setProperty('--duration',(5+(i*11)%43/10)+'s');
+        h.style.setProperty('--delay',(-i*0.37)+'s');
+        h.style.setProperty('--drift',(-70+(i*17)%141)+'px');
+        el.appendChild(h);
+      }
+    }
+    function startMusic(){
+      song.play().then(()=>{
+        isPlaying=true;
+        $('songBtn').textContent="⏸ Caliente'yi durdur";
+        $('songStatus').textContent="Bu şarkı senin için çalıyor, İremsu'm ♡";
+      }).catch(()=>{openYouTube();});
+    }
     function openFinale(){
-      finaleIsOpen=true;$('finale').classList.add('visible');document.body.style.overflow='hidden';
-      $('envelopeStep').hidden=false;$('letterStep').hidden=true;
-      createHeartRain();$('openLetterBtn').focus();
+      $('finale').classList.add('visible');document.body.style.overflow='hidden';
+      $('finale').scrollTop=0;
+      startHearts();startFireworks();
+      $('loveLetter').classList.remove('revealed');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>$('loveLetter').classList.add('revealed')));
+      startMusic();
     }
-    function revealLetter(){
-      $('envelopeStep').hidden=true;$('letterStep').hidden=false;
-      $('finale').querySelector('.finale-inner').scrollTop=0;
-      startFireworks();$('songBtn').focus();
-      // Safari yalnızca kullanıcı etkileşimiyle sesi başlatabilir.
-      if(song.dataset.mode==='file')startLocalSong();else showOfficialPlayer();
-    }
-    function showOfficialPlayer(){
-      const host=$('songPlayer');host.hidden=false;
-      host.innerHTML='';
-      const frame=document.createElement('iframe');
-      frame.title='INNA - Caliente, resmi müzik videosu';
-      frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
-      frame.allowFullscreen=true;
-      frame.src='https://www.youtube-nocookie.com/embed/'+officialVideo+'?autoplay=1&playsinline=1&rel=0';
-      host.appendChild(frame);
-      $('songStatus').textContent='Caliente burada 💗 Otomatik başlamazsa videodaki ▶ düğmesine dokun.';
-      $('songBtn').textContent='🎵 Şarkıyı yeniden başlat';
-    }
-    async function startLocalSong(){
-      if(isPlaying){song.pause();isPlaying=false;$('songBtn').textContent='🎵 Caliente’yi çal';return;}
-      try{
-        await song.play();isPlaying=true;
-        $('songBtn').textContent='⏸ Müziği durdur';
-        $('songStatus').textContent='Bizim şarkımız başladı… 💗';
-      }catch(err){showOfficialPlayer();}
-    }
-    function closeFinale(){
-      finaleIsOpen=false;
+    $('closeFinale').addEventListener('click',()=>{
       $('finale').classList.remove('visible');document.body.style.overflow='';stopFireworks();
-      const host=$('songPlayer');host.innerHTML='';host.hidden=true;
-      song.pause();isPlaying=false;
-      $('songBtn').textContent='🎵 Caliente’yi dinle';
-    }
-    $('openLetterBtn').addEventListener('click',revealLetter);
-    $('closeEnvelope').addEventListener('click',closeFinale);
-    $('closeFinale').addEventListener('click',closeFinale);
+      $('heartRain').replaceChildren();song.pause();isPlaying=false;
+      if(showVideo){$('musicVideo').src='';$('musicEmbed').hidden=true;showVideo=false;}
+      $('songBtn').textContent="🎵 INNA – Caliente'yi çal";
+    });
     $('songBtn').addEventListener('click',()=>{
-      if(song.dataset.mode==='file')startLocalSong();else showOfficialPlayer();
+      if(showVideo){
+        $('musicVideo').src=youtubeVideo;
+        $('songStatus').textContent='Videodaki oynat düğmesine basabilirsin ♡';
+        return;
+      }
+      if(isPlaying){song.pause();isPlaying=false;$('songBtn').textContent="🎵 INNA – Caliente'yi çal";return;}
+      startMusic();
     });
-    song.addEventListener('ended',()=>{
-      isPlaying=false;$('songBtn').textContent='🎵 Yeniden dinle';
-      $('songStatus').textContent='Bir daha dinlemek için dokun 💗';
-    });
+    song.addEventListener('error',()=>{if($('finale').classList.contains('visible'))openYouTube();});
+    song.addEventListener('ended',()=>{isPlaying=false;$('songBtn').textContent='🎵 Tekrar çal';});
     // Animasyon arka planı. Dış kütüphane / sunucu gerektirmez.
     const decoration=['♥','✧','✦','♡','✿'];
     const dec=$('decor');for(let i=0;i<17;i++){
